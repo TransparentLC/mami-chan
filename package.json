@@ -1,7 +1,7 @@
 {
     "name": "mami-chan",
     "license": "BSD-3-Clause",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "type": "module",
     "scripts": {
         "build": "tsup lib/index.ts --format esm,cjs --dts --minify"
