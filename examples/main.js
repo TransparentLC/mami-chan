@@ -1,13 +1,10 @@
-import { CommonMetadata, getCommonMetadata } from "../lib/index";
+import { getCommonMetadata } from "/dist/index.js";
 
-//@ts-ignore VITE WHY YOU DO THIS TO ME
-import testfile from "../assets/2.flac?url";
-
-getCommonMetadata(testfile).then((data) => {
+getCommonMetadata("/assets/2.flac").then((data) => {
     document.body.innerHTML = renderTrackInfo(data);
 });
 
-function escapeHTML(str: string) {
+function escapeHTML(str) {
     return str
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
@@ -16,7 +13,7 @@ function escapeHTML(str: string) {
         .replace(/'/g, "&apos;");
 }
 
-function renderTrackInfo(cmd: CommonMetadata) {
+function renderTrackInfo(cmd) {
     return `
         <div class="track-info">
             <h1 class="title">${escapeHTML(cmd.title ?? "Unknow track")}</h1>

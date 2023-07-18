@@ -4,7 +4,7 @@
     "version": "1.0.2",
     "type": "module",
     "scripts": {
-        "build": "tsup lib/index.ts --format esm,cjs --dts --minify"
+        "build": "tsup lib/index.ts --format esm,cjs --dts"
     },
     "devDependencies": {
         "tsup": "^7.1.0",
