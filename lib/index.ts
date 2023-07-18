@@ -13,7 +13,7 @@ import FLACTagReader from "./FLACTagReader";
 
 import type { CallbackType, LoadCallbackType, ByteRange } from "./types";
 import { IMediaTagReader } from "./MediaTagReader";
-import { PictureType, TagType } from "jsmediatags/types";
+import { TagType } from "./types";
 
 var mediaFileReaders: IMediaFileReader[] = [];
 var mediaTagReaders: IMediaTagReader[] = [];
@@ -303,10 +303,7 @@ export function getCommonMetadata(url: string): Promise<CommonMetadata> {
                 const artist = data.tags.artist as string | undefined;
                 const album = data.tags.album as string | undefined;
 
-                let pictureData = data.tags.picture as
-                    | PictureType
-                    | PictureType[]
-                    | undefined;
+                let pictureData = data.tags.picture as any | any[] | undefined;
 
                 if (Array.isArray(pictureData)) {
                     pictureData = pictureData.find(

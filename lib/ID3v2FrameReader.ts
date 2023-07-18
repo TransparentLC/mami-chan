@@ -10,7 +10,7 @@ import type {
     TagFrameHeader,
     TagFrameFlags,
 } from "./types";
-import InternalDecodedString from "jsmediatags/build2/StringUtils";
+import { InternalDecodedString } from "./StringUtils";
 
 const TEXT_FRAME_DESCRIPTIONS = {
     TAL: "Album/Movie/Show title",

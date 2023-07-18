@@ -4,23 +4,21 @@
     "version": "1.0.0",
     "type": "module",
     "scripts": {
-        "dev": "vite",
-        "build": "tsc && vite build",
-        "preview": "vite preview"
+        "build": "tsup lib/index.ts --format esm,cjs --dts --minify"
     },
     "devDependencies": {
-        "typescript": "^5.0.2",
-        "vite": "^4.4.0"
+        "tsup": "^7.1.0",
+        "typescript": "^5.0.2"
     },
     "files": [
         "dist"
     ],
-    "main": "./dist/mami-chan.umd.cjs",
-    "module": "./dist/mami-chan.js",
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
     "exports": {
         ".": {
-            "import": "./dist/mami-chan.js",
-            "require": "./dist/mami-chan.umd.cjs"
+            "import": "./dist/index.js",
+            "require": "./dist/index.cjs"
         }
     }
 }
