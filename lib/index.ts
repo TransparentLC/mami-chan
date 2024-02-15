@@ -2,7 +2,7 @@ import MediaFileReader, {
     IMediaFileReader,
     IMediaFileReaderInstance,
 } from "./MediaFileReader";
-import XhrFileReader from "./XhrFileReader";
+import FetchFileReader from "./FetchFileReader";
 // import BlobFileReader from "./BlobFileReader";
 // import ArrayFileReader from "./ArrayFileReader";
 import MediaTagReader from "./MediaFileReader";
@@ -10,6 +10,7 @@ import ID3v1TagReader from "./ID3v1TagReader";
 import ID3v2TagReader from "./ID3v2TagReader";
 import MP4TagReader from "./MP4TagReader";
 import FLACTagReader from "./FLACTagReader";
+import OggTagReader from "./OggTagReader";
 
 import type { CallbackType, LoadCallbackType, ByteRange } from "./types";
 import { IMediaTagReader } from "./MediaTagReader";
@@ -256,33 +257,17 @@ export class Config {
 
         return Config;
     }
-
-    static EXPERIMENTAL_avoidHeadRequests() {
-        XhrFileReader.setConfig({
-            avoidHeadRequests: true,
-        });
-    }
-
-    static setDisallowedXhrHeaders(disallowedXhrHeaders: Array<string>) {
-        XhrFileReader.setConfig({
-            disallowedXhrHeaders: disallowedXhrHeaders,
-        });
-    }
-
-    static setXhrTimeoutInSec(timeoutInSec: number) {
-        XhrFileReader.setConfig({
-            timeoutInSec: timeoutInSec,
-        });
-    }
 }
 
-Config.addFileReader(XhrFileReader)
+Config
+    .addFileReader(FetchFileReader)
     // .addFileReader(BlobFileReader)
     // .addFileReader(ArrayFileReader)
     .addTagReader(ID3v2TagReader)
     .addTagReader(ID3v1TagReader)
     .addTagReader(MP4TagReader)
-    .addTagReader(FLACTagReader);
+    .addTagReader(FLACTagReader)
+    .addTagReader(OggTagReader);
 
 export interface CommonMetadata {
     title?: string;

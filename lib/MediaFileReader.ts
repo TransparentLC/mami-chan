@@ -121,8 +121,8 @@ export default class MediaFileReader implements IMediaFileReaderInstance {
 
     getShortAt(offset: number, isBigEndian: boolean): number {
         var iShort = isBigEndian
-            ? (this.getByteAt(offset) << 8) + this.getByteAt(offset + 1)
-            : (this.getByteAt(offset + 1) << 8) + this.getByteAt(offset);
+            ? (this.getByteAt(offset) << 8) | this.getByteAt(offset + 1)
+            : (this.getByteAt(offset + 1) << 8) | this.getByteAt(offset);
         if (iShort < 0) {
             iShort += 65536;
         }
@@ -145,8 +145,8 @@ export default class MediaFileReader implements IMediaFileReaderInstance {
             iByte4 = this.getByteAt(offset + 3);
 
         var iLong = isBigEndian
-            ? (((((iByte1 << 8) + iByte2) << 8) + iByte3) << 8) + iByte4
-            : (((((iByte4 << 8) + iByte3) << 8) + iByte2) << 8) + iByte1;
+            ? (((((iByte1 << 8) | iByte2) << 8) | iByte3) << 8) | iByte4
+            : (((((iByte4 << 8) | iByte3) << 8) | iByte2) << 8) | iByte1;
 
         if (iLong < 0) {
             iLong += 4294967296;
@@ -171,8 +171,8 @@ export default class MediaFileReader implements IMediaFileReaderInstance {
             iByte3 = this.getByteAt(offset + 2);
 
         var iInteger = isBigEndian
-            ? (((iByte1 << 8) + iByte2) << 8) + iByte3
-            : (((iByte3 << 8) + iByte2) << 8) + iByte1;
+            ? (((iByte1 << 8) | iByte2) << 8) | iByte3
+            : (((iByte3 << 8) | iByte2) << 8) | iByte1;
 
         if (iInteger < 0) {
             iInteger += 16777216;
